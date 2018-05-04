@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using GTA;
 using GTA.Native;
 
+//Public domain.
+
 namespace WalkingIsEasy
 {
 
@@ -32,10 +34,10 @@ public class WalkingIsAsEasyAsBreathing : Script
 	private void WalkingIsEasyKeyDown(object sender, KeyEventArgs E) {
 		if(!Game.Player.Character.IsInVehicle()) {
 			if(E.KeyCode == GrooveControlKey) {
-				if(Game.GetControlNormal(0, GTA.Control.MoveUpDown) > -1.0f) {
-					if(!Active) Activate();
-					else Deactivate();
+				if(!Active && Game.GetControlNormal(0, GTA.Control.MoveUpDown) > -1.0f) {
+					Activate();
 					}
+				else if(Active) Deactivate();
 				}
 			else if(Active) {
 				if(E.KeyCode == MoveForwardKey) {
